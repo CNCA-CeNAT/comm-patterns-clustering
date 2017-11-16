@@ -1,17 +1,19 @@
-# comm-patterns-clustering
-This repository holds the different components of the communication patterns and clustering project. 
-
 ############################################################################
+
                 Communication Patterns and Clustering Project
+
 ############################################################################
 
 
 
 Centro Nacional de Alta Tecnología
+
 Colaboratorio Nacional de Computación Avanzada 
 
 Manfred Calvo - correo
+
 Diego Jiménez - djimenez@cenat.ac.cr
+
 Esteban Meneses - emeneses@cenat.ac.cr
 
 Description:
