@@ -1,0 +1,3 @@
+[submodule "mpiP_cm"]
+	path = mpiP_cm
+	url = https://github.com/manfredcalvo/mpiP_cm.git
