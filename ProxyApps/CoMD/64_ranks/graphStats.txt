@@ -63,133 +63,70 @@
 (0, 61)
 (0, 62)
 (0, 63)
-(1, 1)
-(2, 2)
-(3, 3)
-(4, 4)
-(5, 5)
-(6, 6)
-(7, 7)
-(8, 8)
-(9, 9)
-(10, 10)
-(11, 11)
-(12, 12)
-(13, 13)
-(14, 14)
-(15, 15)
-(16, 16)
-(17, 17)
-(18, 18)
-(19, 19)
-(20, 20)
-(21, 21)
-(22, 22)
-(23, 23)
-(24, 24)
-(25, 25)
-(26, 26)
-(27, 27)
-(28, 28)
-(29, 29)
-(30, 30)
-(31, 31)
-(32, 32)
-(33, 33)
-(34, 34)
-(35, 35)
-(36, 36)
-(37, 37)
-(38, 38)
-(39, 39)
-(40, 40)
-(41, 41)
-(42, 42)
-(43, 43)
-(44, 44)
-(45, 45)
-(46, 46)
-(47, 47)
-(48, 48)
-(49, 49)
-(50, 50)
-(51, 51)
-(52, 52)
-(53, 53)
-(54, 54)
-(55, 55)
-(56, 56)
-(57, 57)
-(58, 58)
-(59, 59)
-(60, 60)
-(61, 61)
-(62, 62)
-(63, 63)
 ----------------Graph info end -------------------
 ----------------Vertex Information ---------------
 vertex:0 in-degree: 1 out-degree: 64
-vertex:1 in-degree: 2 out-degree: 1
-vertex:2 in-degree: 2 out-degree: 1
-vertex:3 in-degree: 2 out-degree: 1
-vertex:4 in-degree: 2 out-degree: 1
-vertex:5 in-degree: 2 out-degree: 1
-vertex:6 in-degree: 2 out-degree: 1
-vertex:7 in-degree: 2 out-degree: 1
-vertex:8 in-degree: 2 out-degree: 1
-vertex:9 in-degree: 2 out-degree: 1
-vertex:10 in-degree: 2 out-degree: 1
-vertex:11 in-degree: 2 out-degree: 1
-vertex:12 in-degree: 2 out-degree: 1
-vertex:13 in-degree: 2 out-degree: 1
-vertex:14 in-degree: 2 out-degree: 1
-vertex:15 in-degree: 2 out-degree: 1
-vertex:16 in-degree: 2 out-degree: 1
-vertex:17 in-degree: 2 out-degree: 1
-vertex:18 in-degree: 2 out-degree: 1
-vertex:19 in-degree: 2 out-degree: 1
-vertex:20 in-degree: 2 out-degree: 1
-vertex:21 in-degree: 2 out-degree: 1
-vertex:22 in-degree: 2 out-degree: 1
-vertex:23 in-degree: 2 out-degree: 1
-vertex:24 in-degree: 2 out-degree: 1
-vertex:25 in-degree: 2 out-degree: 1
-vertex:26 in-degree: 2 out-degree: 1
-vertex:27 in-degree: 2 out-degree: 1
-vertex:28 in-degree: 2 out-degree: 1
-vertex:29 in-degree: 2 out-degree: 1
-vertex:30 in-degree: 2 out-degree: 1
-vertex:31 in-degree: 2 out-degree: 1
-vertex:32 in-degree: 2 out-degree: 1
-vertex:33 in-degree: 2 out-degree: 1
-vertex:34 in-degree: 2 out-degree: 1
-vertex:35 in-degree: 2 out-degree: 1
-vertex:36 in-degree: 2 out-degree: 1
-vertex:37 in-degree: 2 out-degree: 1
-vertex:38 in-degree: 2 out-degree: 1
-vertex:39 in-degree: 2 out-degree: 1
-vertex:40 in-degree: 2 out-degree: 1
-vertex:41 in-degree: 2 out-degree: 1
-vertex:42 in-degree: 2 out-degree: 1
-vertex:43 in-degree: 2 out-degree: 1
-vertex:44 in-degree: 2 out-degree: 1
-vertex:45 in-degree: 2 out-degree: 1
-vertex:46 in-degree: 2 out-degree: 1
-vertex:47 in-degree: 2 out-degree: 1
-vertex:48 in-degree: 2 out-degree: 1
-vertex:49 in-degree: 2 out-degree: 1
-vertex:50 in-degree: 2 out-degree: 1
-vertex:51 in-degree: 2 out-degree: 1
-vertex:52 in-degree: 2 out-degree: 1
-vertex:53 in-degree: 2 out-degree: 1
-vertex:54 in-degree: 2 out-degree: 1
-vertex:55 in-degree: 2 out-degree: 1
-vertex:56 in-degree: 2 out-degree: 1
-vertex:57 in-degree: 2 out-degree: 1
-vertex:58 in-degree: 2 out-degree: 1
-vertex:59 in-degree: 2 out-degree: 1
-vertex:60 in-degree: 2 out-degree: 1
-vertex:61 in-degree: 2 out-degree: 1
-vertex:62 in-degree: 2 out-degree: 1
-vertex:63 in-degree: 2 out-degree: 1
+vertex:1 in-degree: 1 out-degree: 0
+vertex:2 in-degree: 1 out-degree: 0
+vertex:3 in-degree: 1 out-degree: 0
+vertex:4 in-degree: 1 out-degree: 0
+vertex:5 in-degree: 1 out-degree: 0
+vertex:6 in-degree: 1 out-degree: 0
+vertex:7 in-degree: 1 out-degree: 0
+vertex:8 in-degree: 1 out-degree: 0
+vertex:9 in-degree: 1 out-degree: 0
+vertex:10 in-degree: 1 out-degree: 0
+vertex:11 in-degree: 1 out-degree: 0
+vertex:12 in-degree: 1 out-degree: 0
+vertex:13 in-degree: 1 out-degree: 0
+vertex:14 in-degree: 1 out-degree: 0
+vertex:15 in-degree: 1 out-degree: 0
+vertex:16 in-degree: 1 out-degree: 0
+vertex:17 in-degree: 1 out-degree: 0
+vertex:18 in-degree: 1 out-degree: 0
+vertex:19 in-degree: 1 out-degree: 0
+vertex:20 in-degree: 1 out-degree: 0
+vertex:21 in-degree: 1 out-degree: 0
+vertex:22 in-degree: 1 out-degree: 0
+vertex:23 in-degree: 1 out-degree: 0
+vertex:24 in-degree: 1 out-degree: 0
+vertex:25 in-degree: 1 out-degree: 0
+vertex:26 in-degree: 1 out-degree: 0
+vertex:27 in-degree: 1 out-degree: 0
+vertex:28 in-degree: 1 out-degree: 0
+vertex:29 in-degree: 1 out-degree: 0
+vertex:30 in-degree: 1 out-degree: 0
+vertex:31 in-degree: 1 out-degree: 0
+vertex:32 in-degree: 1 out-degree: 0
+vertex:33 in-degree: 1 out-degree: 0
+vertex:34 in-degree: 1 out-degree: 0
+vertex:35 in-degree: 1 out-degree: 0
+vertex:36 in-degree: 1 out-degree: 0
+vertex:37 in-degree: 1 out-degree: 0
+vertex:38 in-degree: 1 out-degree: 0
+vertex:39 in-degree: 1 out-degree: 0
+vertex:40 in-degree: 1 out-degree: 0
+vertex:41 in-degree: 1 out-degree: 0
+vertex:42 in-degree: 1 out-degree: 0
+vertex:43 in-degree: 1 out-degree: 0
+vertex:44 in-degree: 1 out-degree: 0
+vertex:45 in-degree: 1 out-degree: 0
+vertex:46 in-degree: 1 out-degree: 0
+vertex:47 in-degree: 1 out-degree: 0
+vertex:48 in-degree: 1 out-degree: 0
+vertex:49 in-degree: 1 out-degree: 0
+vertex:50 in-degree: 1 out-degree: 0
+vertex:51 in-degree: 1 out-degree: 0
+vertex:52 in-degree: 1 out-degree: 0
+vertex:53 in-degree: 1 out-degree: 0
+vertex:54 in-degree: 1 out-degree: 0
+vertex:55 in-degree: 1 out-degree: 0
+vertex:56 in-degree: 1 out-degree: 0
+vertex:57 in-degree: 1 out-degree: 0
+vertex:58 in-degree: 1 out-degree: 0
+vertex:59 in-degree: 1 out-degree: 0
+vertex:60 in-degree: 1 out-degree: 0
+vertex:61 in-degree: 1 out-degree: 0
+vertex:62 in-degree: 1 out-degree: 0
+vertex:63 in-degree: 1 out-degree: 0
 ----------------Vertex info end ------------------
