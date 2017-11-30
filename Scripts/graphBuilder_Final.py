@@ -5,15 +5,7 @@
 # Esteban Meneses
 # Creates a graph representation from a set of logs.
 # Date: 01-20-2015
-
-# Costa Rica National High Technology Center
-# Advanced Computing Laboratory
-# Diego Jimenez
-# Based on the script by Menses
-# Creates a graph representation from an mpiP reports and extracts their:
-# heatmap, basic stats and a degree distribution
-# Date: 11-16-2017
-
+from __future__ import division
 import sys
 import re
 import datetime
@@ -23,6 +15,7 @@ import matplotlib.cm as cm
 import re
 import numpy as np
 from graph_tool.all import *
+
 
 
 FAST=1
@@ -47,18 +40,35 @@ def showVertexInfo(graphInput, fileName):
     fileName.write("----------------Vertex info end ------------------\n")
 
 def getDegreeDist(graphInput, outputDir):
-	""" BUGGED: Creates a png visualization of the vertex degree distribution"""
+	""" Creates a png visualization of the vertex degree distribution: BUGGED"""
 	size = len(graphInput.get_vertices())
 	in_degrees = graphInput.get_in_degrees(graphInput.get_vertices())	
 	out_degrees = graphInput.get_out_degrees(graphInput.get_vertices())
 	total = np.append(in_degrees, out_degrees)
 	bins = range(1, size+1)
-	histogram = vertex_hist(graphInput, "total", bins=bins)	
+	histogram = vertex_hist(graphInput, "total", bins=bins)
+	#print(len(histogram[0]))
+	#print(len(histogram[1]))
 	print (histogram[0])	
 	#plt.bar(bins,histogram[0])
 	#output_file = outputDir + "/distribution2.png"
 	#plt.autoscale(enable=True, axis='both')
 	#plt.savefig(output_file, bbox_inches='tight')
+
+def removeOutliers(distribution):
+	index = []
+	thresholdMin = np.percentile(distribution, 5)
+	thresholdMax = np.percentile(distribution, 95)
+	for i in range(len(distribution)):
+		if distribution[i] < thresholdMin:
+			index.append(i)
+		elif distribution[i] > thresholdMax:
+			index.append(i)
+		else:
+			continue
+	distribution = np.delete(distribution, index)
+	return distribution
+
 
 def getHist(graphInput, outputDir):
 	""" Creates a png visualization of the vertex degree distribution """
@@ -69,16 +79,42 @@ def getHist(graphInput, outputDir):
 		total_neighbors = np.append(in_neighbors, out_neighbors)
 		tots = sorted(set(total_neighbors))
 		degree = len(tots)
-		hist.append(degree)
+		hist.append(degree)	
+	print ("-------------Original count------------------")
+	size = len(hist)
 	print (hist)
-	#print (len(hist))
-	bins = range(1, len(hist)+2)	
-	histogram = np.histogram(hist, bins=bins)
-	print(histogram[0])
-	plt.hist(hist, bins=bins)
-	output_file = outputDir + "/distribution.png"
+	print (len(hist))
+	print ("-------------Outliers count------------------")
+	hist = list(removeOutliers(hist))
+	print (hist)
+	print (len(hist))
+
+	print ("-------------Histogram count------------------")
+	bins = np.arange(1, np.max(hist)+2)	
+	weightsNumpy = np.ones_like((hist))/float(len(hist))	
+	histogram, bin_edges = np.histogram(hist, bins=bins)
+	pdf = histogram/size
+	print(pdf)
+	print (bin_edges)
+	print (len(pdf))
+	print (len(bins))
+
+	print ("-------------Saving PDF------------------")
+	xaxis = range(1,len(pdf)+1)
+	plt.bar(xaxis, pdf)	
+	output_file = outputDir + "/PDF.png"
 	plt.savefig(output_file, bbox_inches='tight')
-    
+
+
+	print ("-------------Preparing CDF------------------")
+    	cdf = np.cumsum(pdf)
+    	print (cdf)
+    	plt.bar(xaxis, cdf)
+    	output_file = outputDir + "/CDF.png"
+    	plt.savefig(output_file, bbox_inches='tight')
+
+
+
 def obtainGraphStats(outputDir):
 	""" Obtain various graph stats in a file"""
 	print ("\r Analyzing graph \n")
@@ -107,6 +143,27 @@ def connected(edge_x,edge_y):
 		if v == y:
 			return True
 	return False
+
+def weighted_clustering_coefficient(graph,weights):
+	""" Computes the weighted clustering coefficient of the graph """
+
+	# create property map
+	prop = graph.new_vertex_property("double")	
+
+	for v in graph.vertices():
+		total = 0.0
+		for edge_x in v.out_edges():
+			for edge_y in v.out_edges():
+				if(connected(edge_x,edge_y)):
+					total = total + (weights[edge_x]+weights[edge_y])/2.0
+		weight_sum = 0.0
+		for edge in v.out_edges():
+			weight_sum = weight_sum + weights[edge]
+		weight_sum = weight_sum * (v.out_degree()-1)
+		prop[v] = total/weight_sum
+
+	# return property map
+	return prop
 
 def drawGraph(outSizeX, outSizeY, outputDir):
 	""" Creates a png visualization of the communications graph """
@@ -200,6 +257,7 @@ if len(sys.argv) > 3:
 	drawGraph(2500, 2500, outputDir)
 	if size==64:
 		drawHeatmap(res_matrix,size,outputDir)
+	
 	
 
 	#show_config()
