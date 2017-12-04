@@ -1,8 +1,10 @@
 
 
+from __future__ import division
 from igraph import Graph
 from igraph import plot
 from igraph import layout
+from igraph import *
 import sys
 import math
 import matplotlib.pyplot as plt
@@ -22,8 +24,79 @@ edges = {}
 
 def orderTuple(a,b):
 	return (a, b) if a < b else (b,a)
+
+def removeOutliers(distribution):
+	index = []
+	thresholdMin = np.percentile(distribution, 5)
+	thresholdMax = np.percentile(distribution, 95)
+	for i in range(len(distribution)):
+		if distribution[i] < thresholdMin:
+			index.append(i)
+		elif distribution[i] > thresholdMax:
+			index.append(i)
+		else:
+			continue
+	distribution = np.delete(distribution, index)
+	return distribution
 	
+def showGraphInfo(graphInput,fileName):
+    """ Show information on a given Graph """
+    fileName.write("--------------- Graph Information----------------\n")   
+    for e in graphInput.es:
+		fileName.write(str(e.source)+" , "+str(e.target)+" = "+str(e['weight'])+"\n")     
+    fileName.write("----------------Graph info end -------------------\n")
+
+
+def getHist(graphInput, outputDir):
+	""" Creates a png visualization of the vertex degree distribution """
+	hist = graphInput.degree()
+
+	print ("-------------Original count------------------")
+	size = len(hist)
+	print (hist)
+	print (len(hist))
+	print ("-------------Outliers count------------------")
+	hist = list(removeOutliers(hist))
+	print (hist)
+	print (len(hist))
+
+	print ("-------------Histogram count------------------")
+	bins = np.arange(1, np.max(hist)+2)	
+	weightsNumpy = np.ones_like((hist))/float(len(hist))	
+	histogram, bin_edges = np.histogram(hist, bins=bins)
+	pdf = histogram/size
+	print(pdf)
+	#print (bin_edges)
+	#print (len(pdf))
+	#print (len(bins))
+
+	print ("-------------Saving PDF------------------")
+	xaxis = range(1,len(pdf)+1)
+	plt.bar(xaxis, pdf)	
+	output_file = outputDir + "/PDF.png"
+	plt.savefig(output_file, bbox_inches='tight')
+
+
+	print ("-------------Preparing CDF------------------")
+    	cdf = np.cumsum(pdf)
+    	print (cdf)
+    	plt.bar(xaxis, cdf)
+    	output_file = outputDir + "/CDF.png"
+    	plt.savefig(output_file, bbox_inches='tight')
+
+
 	
+def obtainGraphStats(graphIn, outputDir):
+	""" Obtain various graph stats in a file"""
+	print ("\r Analyzing graph \n")
+	outFileName = outputDir + "/graphStats.txt"
+	outputStats = open(outFileName,'w')
+	showGraphInfo(graphIn, outputStats)
+	#showVertexInfo(graphInput,outputStats)
+	#getDegreeDist(graphInput, outputDir)
+	getHist(graphIn, outputDir)
+	outputStats.close()
+
 
 def loadInGraph(line):
 	
@@ -220,7 +293,7 @@ def parseFileAndLoadGraph(input_file):
 				continue
 			actualFunction(line)
 
-def run_generation(inputFile, algorithm, nodes):
+def run_generation(inputFile, algorithm, nodes, outputDir):
 	
 	print("Application name %s, number of nodes %s" % (algorithm, nodes))
 	
@@ -235,6 +308,7 @@ def run_generation(inputFile, algorithm, nodes):
 	
 	nVertex = len(graph.vs)
 	
+	
 	matrixToHeatMap = np.zeros((nVertex, nVertex))
 	for e, values in edges.items():
 		(source,  target) = e
@@ -245,11 +319,11 @@ def run_generation(inputFile, algorithm, nodes):
 				matrixToHeatMap[target][source] = values[(target,source)]
 		c += 1
 
-	for e in graph.es:
-		print(e.source, e.target, '=', e['weight'])
+	#for e in graph.es:
+	#	print(e.source, e.target, '=', e['weight'])
 
 	actualApplication = algorithm
-	
+
 	createHeatMapFromGraph('Communication matrix ' + actualApplication + ' (' + nodes + ' nodes)', matrixToHeatMap.T)
 	
 	print("First method\n")
@@ -257,6 +331,13 @@ def run_generation(inputFile, algorithm, nodes):
 	clusterU = graph.community_fastgreedy(weights='weight').as_clustering()
 	
 	print(clusterU.q)
+
+	print("=============== Testing igraph and graph==================")
+
+	print (graph.degree())	
+	obtainGraphStats(graph, outputDir)
+
+	print("=============== Ending test igraph and graph==================")
 			
 	createHeatMapFromGraphCommunities('Communities in application ' +
 									  actualApplication + ' using fast greedy algorithm (' + nodes + ' nodes)',
@@ -269,4 +350,4 @@ def run_generation(inputFile, algorithm, nodes):
 	
 	createGraphCommunitiesSize(communitiesSize, 'fast greedy', actualApplication, nodes)
 	
-run_generation(sys.argv[1], sys.argv[2], sys.argv[3])
+run_generation(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
