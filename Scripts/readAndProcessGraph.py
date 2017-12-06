@@ -4,7 +4,7 @@ from __future__ import division
 from igraph import Graph
 from igraph import plot
 from igraph import layout
-from igraph import *
+import igraph as igraph 
 import sys
 import math
 import matplotlib.pyplot as plt
@@ -21,6 +21,12 @@ endLineToParse = '------- End Communication Matrix -------------'
 graph = None
 vertexAdded = {}
 edges = {}
+
+
+def plotGraph(graph, outputDir):
+	fileName = outputDir + "/graph.png"
+	layout = graph.layout_lgl()
+	igraph.plot(graph,fileName, layout=layout)
 
 def orderTuple(a,b):
 	return (a, b) if a < b else (b,a)
@@ -144,6 +150,7 @@ def loadInGraph(line):
 	 
 
 
+
 from random import randint
 
 def _plot(g, membership=None):
@@ -185,7 +192,7 @@ def _plot(g, membership=None):
         for vertex in g.vs():
             vertex["color"] = str('#') + colors[membership[vertex.index]]
         visual_style["vertex_color"] = g.vs["color"]
-    plot(g, **visual_style)
+    plot(g,**visual_style)
 
 
 def createHeatMapFromGraphCommunities(title, matrix):
@@ -334,8 +341,8 @@ def run_generation(inputFile, algorithm, nodes, outputDir):
 
 	print("=============== Testing igraph and graph==================")
 
-	print (graph.degree())	
 	obtainGraphStats(graph, outputDir)
+	plotGraph(graph, outputDir)
 
 	print("=============== Ending test igraph and graph==================")
 			
