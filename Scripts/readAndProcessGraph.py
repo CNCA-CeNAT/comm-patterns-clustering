@@ -182,7 +182,7 @@ def createMatrixFromCluster(cluster):
 	return matrixCommunity
 
 def createGraphCommunitiesSize(communitiesSize, algorithm, app, nodes):
-	
+	title = 'Communities size detected by ' + algorithm + ' algorithm (' + nodes +' nodes)'
 	trace1 = Bar(
 		x=[i for i in range(len(communitiesSize))],
 		y=communitiesSize,
@@ -197,7 +197,7 @@ def createGraphCommunitiesSize(communitiesSize, algorithm, app, nodes):
 		)
 	),
 	showlegend=True,
-	title='Communities size detected by ' + algorithm + ' algorithm (' + nodes +' nodes)',
+	title=title,
 	xaxis=XAxis(
 		autorange=True,
 		type='category'
@@ -208,7 +208,7 @@ def createGraphCommunitiesSize(communitiesSize, algorithm, app, nodes):
 		)
 	)
 	fig = Figure(data=data, layout=layout)
-	plot(fig)
+	plot(fig, filename=title)
 
 def parseFileAndLoadGraph(input_file):
 	actualFunction = defaultFunction
