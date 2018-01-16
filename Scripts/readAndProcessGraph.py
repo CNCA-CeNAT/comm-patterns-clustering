@@ -25,14 +25,15 @@ edges = {}
 
 
 def convertGraph(graphInput):
-	netXGraph = nx.Graph()
-	names = list(map(int, graphInput.vs['name']))	
-	netXGraph.add_nodes_from(names)
-	netXGraph.add_edges_from(graphInput.get_edgelist())	
+    netXGraph = nx.Graph()
+    names = list(map(int, graphInput.vs['name']))	
+    netXGraph.add_nodes_from(names)
+    netXGraph.add_edges_from(graphInput.get_edgelist())	
 	#print(list(netXGraph.edges()))
-	return netXGraph
+    return netXGraph
 
 def plotGraph(graph, outputDir):
+	""" Plot the graph structure on an image"""
 	fileName = outputDir + "/graph.png"
 	layout = graph.layout_lgl()
 	igraph.plot(graph,fileName, layout=layout)
@@ -54,7 +55,19 @@ def removeOutliers(distribution):
 	distribution = np.delete(distribution, index)
 	return distribution
 
+def calculateCPL(graphInput):
+	nodes = nx.nodes(graphInput)
+	averages = []
+	for node in nodes:
+		path_lengths = nx.single_source_shortest_path_length(graphInput, node)
+		average = sum(path_lengths.values())/len(path_lengths)
+		averages.append(average)
+	median = np.median(averages)
+	return median
+	
+
 def getConnStats(graphInput, fileName):
+	""" Function to extract different connectivity stats using networkX algorithms """
 	graphNodes = list(graphInput.nodes)
 	graphDegrees = list(graphInput.degree(graphNodes))
 	degrees = []
@@ -71,18 +84,21 @@ def getConnStats(graphInput, fileName):
 
 
 def getDistStats(graphInput, fileName):
+	""" Function to extract different distance stats using networkX algorithms """
 	avPathLength = nx.average_shortest_path_length(graphInput)
 	graphDiameter = nx.diameter(graphInput)
 	eccentricityList = nx.eccentricity(graphInput)
-	#print(eccentricityList.values())
 	averageEccentricity = np.mean(eccentricityList.values())
+	characteristicPathLength = calculateCPL(graphInput)
 	fileName.write("--------------- Distance Statistics----------------\n")   
 	fileName.write("Average Path Length:  " + str(avPathLength) + "\n") 
+	fileName.write("Characteristic Path Length:  " + str(characteristicPathLength) + "\n")
 	fileName.write("Graph Diameter:  " + str(graphDiameter) + "\n")
 	fileName.write("Average Eccentricity:  " + str(averageEccentricity) + "\n")
 	fileName.write("----------------Distance Statistics end -------------------\n")
 
 def getClustStats(graphInput, fileName):
+	""" Function to extract different clustering stats using networkX algorithms """
 	triangles = nx.triangles(graphInput)
 	transitivity = nx.transitivity(graphInput)
 	aveClustCoeff = nx.average_clustering(graphInput)
@@ -93,6 +109,7 @@ def getClustStats(graphInput, fileName):
 	fileName.write("----------------Clustering Statistics end -------------------\n")
 
 def getCentralStats(graphInput,fileName):
+	""" Function to extract different centrality stats using networkX algorithms """
 	aveDegreeCentrality = np.mean(nx.degree_centrality(graphInput).values())
 	aveClosenessCentrality = np.mean(nx.closeness_centrality(graphInput).values())
 	aveBetweennessCentrality = np.mean(nx.betweenness_centrality(graphInput).values())
@@ -104,11 +121,11 @@ def getCentralStats(graphInput,fileName):
 
 
 def showGraphInfo(graphInput,fileName):
-    """ Show information on a given Graph """
-    fileName.write("--------------- Graph Information----------------\n")   
-    for e in graphInput.es:
+	""" Show information on a given Graph """
+	fileName.write("--------------- Graph Information----------------\n")   
+	for e in graphInput.es:
 		fileName.write(str(e.source)+" , "+str(e.target)+" = "+str(e['weight'])+"\n")     
-    fileName.write("----------------Graph info end -------------------\n")
+	fileName.write("----------------Graph info end -------------------\n")
 
 
 def getHist(graphInput, outputDir):
@@ -162,11 +179,11 @@ def obtainGraphStats(graphIn, outputDir):
 	getDistStats(netXGraph, outputStats)
 	getClustStats(netXGraph, outputStats)
 	getCentralStats(netXGraph, outputStats)
+	calculateCPL(netXGraph)
 	outputStats.close()
 
 
-def loadInGraph(line):
-	
+def loadInGraph(line):	
 	global graph
 	global vertexAdded
 	global edges
@@ -303,8 +320,7 @@ def defaultFunction(line):
 options = {startLineToParse: loadInGraph, endLineToParse: defaultFunction}
 
 
-def createMatrixFromCluster(cluster):
-	
+def createMatrixFromCluster(cluster):	
 	global graph
 	
 	nVertex = len(graph.vs)
@@ -361,8 +377,7 @@ def parseFileAndLoadGraph(input_file):
 				continue
 			actualFunction(line)
 
-def run_generation(inputFile, algorithm, nodes, outputDir):
-	
+def run_generation(inputFile, algorithm, nodes, outputDir):	
 	print("Application name %s, number of nodes %s" % (algorithm, nodes))
 	
 	global graph
