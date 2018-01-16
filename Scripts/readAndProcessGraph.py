@@ -64,7 +64,22 @@ def calculateCPL(graphInput):
 		averages.append(average)
 	median = np.median(averages)
 	return median
-	
+
+
+def calculateScaleFreeness(graphInput):
+	graphNodes = list(graphInput.nodes)
+	graphDegrees = list(graphInput.degree(graphNodes))
+	degrees = []
+	for x in graphDegrees:
+		degrees.append(x[1])
+	adjacencyMat = nx.adjacency_matrix(graphInput)
+	scaleResult = 0
+	for i in range(1,len(graphDegrees)):
+		for j in range(i+1,len(graphDegrees)):
+			print (str(degrees[i])+"  "+str(degrees[j])+" "+str(adjacencyMat[i,j]))
+			scaleResult += (degrees[i]*degrees[j]*adjacencyMat[i,j])
+	return scaleResult
+		
 
 def getConnStats(graphInput, fileName):
 	""" Function to extract different connectivity stats using networkX algorithms """
@@ -76,10 +91,12 @@ def getConnStats(graphInput, fileName):
 	averageDegree = np.mean(degrees)
 	stdDeviation = np.std(degrees)
 	degreeCorrelation = nx.degree_assortativity_coefficient(graphInput)
+	scaleFreeness = calculateScaleFreeness(graphInput)
 	fileName.write("--------------- Connectivity Statistics----------------\n")   
 	fileName.write("Average Degree:  " + str(averageDegree) + "\n") 
 	fileName.write("Standard Deviation:  " + str(stdDeviation) + "\n")
 	fileName.write("Degree Correlation:  " + str(degreeCorrelation) + "\n")
+	fileName.write("Scale Freeness:  " + str(scaleFreeness) + "\n")
 	fileName.write("----------------Connectivity Statistics end -------------------\n")
 
 
@@ -100,10 +117,13 @@ def getDistStats(graphInput, fileName):
 def getClustStats(graphInput, fileName):
 	""" Function to extract different clustering stats using networkX algorithms """
 	triangles = nx.triangles(graphInput)
+	averageTriangles = np.mean(triangles.values())
+	stdTriangles = np.std(triangles.values())
 	transitivity = nx.transitivity(graphInput)
 	aveClustCoeff = nx.average_clustering(graphInput)
 	fileName.write("--------------- Clustering Statistics----------------\n")   
-	fileName.write("Number of triangles:  " + str(triangles) + "\n") 
+	fileName.write("Average triangles:  " + str(averageTriangles) + "\n") 
+	fileName.write("Standard Deviation triangles:  " + str(stdTriangles) + "\n") 
 	fileName.write("Graph Transitivity:  " + str(transitivity) + "\n")
 	fileName.write("Average Clustering Coefficient:  " + str(aveClustCoeff) + "\n")
 	fileName.write("----------------Clustering Statistics end -------------------\n")
@@ -179,7 +199,7 @@ def obtainGraphStats(graphIn, outputDir):
 	getDistStats(netXGraph, outputStats)
 	getClustStats(netXGraph, outputStats)
 	getCentralStats(netXGraph, outputStats)
-	calculateCPL(netXGraph)
+	calculateScaleFreeness(netXGraph)
 	outputStats.close()
 
 
