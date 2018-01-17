@@ -524,3 +524,26 @@
 51 , 55 = 917566464.0
 25 , 40 = 17308224.0
 ----------------Graph info end -------------------
+--------------- Connectivity Statistics----------------
+Average Degree:  16.375
+Standard Deviation:  7.99706977586
+Degree Correlation:  -0.101034015508
+Scale Freeness:  126794
+----------------Connectivity Statistics end -------------------
+--------------- Distance Statistics----------------
+Average Path Length:  1.74007936508
+Characteristic Path Length:  1.703125
+Graph Diameter:  2
+Average Eccentricity:  1.984375
+----------------Distance Statistics end -------------------
+--------------- Clustering Statistics----------------
+Average triangles:  81.375
+Standard Deviation triangles:  60.7655587072
+Graph Transitivity:  0.515490448382
+Average Clustering Coefficient:  0.67391742033
+----------------Clustering Statistics end -------------------
+--------------- Centrality Statistics----------------
+Average Degree Cenetrality:  0.259920634921
+Average Closeness Centrality:  0.578976874422
+Average Betweenness Centrality:  0.0119367639529
+----------------Centrality Statistics end -------------------

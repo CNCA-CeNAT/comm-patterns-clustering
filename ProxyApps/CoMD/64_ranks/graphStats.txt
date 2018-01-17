@@ -63,3 +63,26 @@
 0 , 2 = 4.0
 0 , 60 = 4.0
 ----------------Graph info end -------------------
+--------------- Connectivity Statistics----------------
+Average Degree:  1.96875
+Standard Deviation:  7.68921474778
+Degree Correlation:  -1.0
+Scale Freeness:  0
+----------------Connectivity Statistics end -------------------
+--------------- Distance Statistics----------------
+Average Path Length:  1.96875
+Characteristic Path Length:  1.953125
+Graph Diameter:  2
+Average Eccentricity:  1.984375
+----------------Distance Statistics end -------------------
+--------------- Clustering Statistics----------------
+Average triangles:  0.0
+Standard Deviation triangles:  0.0
+Graph Transitivity:  0
+Average Clustering Coefficient:  0.0
+----------------Clustering Statistics end -------------------
+--------------- Centrality Statistics----------------
+Average Degree Cenetrality:  0.03125
+Average Closeness Centrality:  0.51175
+Average Betweenness Centrality:  0.015625
+----------------Centrality Statistics end -------------------

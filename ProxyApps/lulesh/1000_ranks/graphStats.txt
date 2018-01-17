@@ -11468,3 +11468,26 @@
 635 , 636 = 2561386000.0
 601 , 700 = 46986448.0
 ----------------Graph info end -------------------
+--------------- Connectivity Statistics----------------
+Average Degree:  22.936
+Standard Deviation:  31.3631934599
+Degree Correlation:  -0.0482290148537
+Scale Freeness:  5555218
+----------------Connectivity Statistics end -------------------
+--------------- Distance Statistics----------------
+Average Path Length:  1.97704104104
+Characteristic Path Length:  1.971
+Graph Diameter:  2
+Average Eccentricity:  1.999
+----------------Distance Statistics end -------------------
+--------------- Clustering Statistics----------------
+Average triangles:  130.488
+Standard Deviation triangles:  329.596504617
+Graph Transitivity:  0.175531721701
+Average Clustering Coefficient:  0.533744682878
+----------------Clustering Statistics end -------------------
+--------------- Centrality Statistics----------------
+Average Degree Cenetrality:  0.022958958959
+Average Closeness Centrality:  0.506054623856
+Average Betweenness Centrality:  0.000978999039119
+----------------Centrality Statistics end -------------------

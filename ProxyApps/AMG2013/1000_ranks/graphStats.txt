@@ -225518,3 +225518,26 @@
 63 , 255 = 216.0
 393 , 967 = 72.0
 ----------------Graph info end -------------------
+--------------- Connectivity Statistics----------------
+Average Degree:  451.036
+Standard Deviation:  109.7662093
+Degree Correlation:  -0.0575376225707
+Scale Freeness:  46595584668
+----------------Connectivity Statistics end -------------------
+--------------- Distance Statistics----------------
+Average Path Length:  1.54851251251
+Characteristic Path Length:  1.561
+Graph Diameter:  2
+Average Eccentricity:  1.998
+----------------Distance Statistics end -------------------
+--------------- Clustering Statistics----------------
+Average triangles:  60269.601
+Standard Deviation triangles:  25210.3179485
+Graph Transitivity:  0.560566474077
+Average Clustering Coefficient:  0.580334493208
+----------------Clustering Statistics end -------------------
+--------------- Centrality Statistics----------------
+Average Degree Cenetrality:  0.451487487487
+Average Closeness Centrality:  0.649287162475
+Average Betweenness Centrality:  0.000549611735984
+----------------Centrality Statistics end -------------------

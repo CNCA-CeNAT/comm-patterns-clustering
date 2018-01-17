@@ -3696,3 +3696,26 @@
 683 , 687 = 184322016.0
 355 , 359 = 184322016.0
 ----------------Graph info end -------------------
+--------------- Connectivity Statistics----------------
+Average Degree:  7.392
+Standard Deviation:  31.3808275225
+Degree Correlation:  -0.156439204628
+Scale Freeness:  132838
+----------------Connectivity Statistics end -------------------
+--------------- Distance Statistics----------------
+Average Path Length:  1.9926006006
+Characteristic Path Length:  1.991
+Graph Diameter:  2
+Average Eccentricity:  1.999
+----------------Distance Statistics end -------------------
+--------------- Clustering Statistics----------------
+Average triangles:  8.091
+Standard Deviation triangles:  85.0761701007
+Graph Transitivity:  0.0156801413945
+Average Clustering Coefficient:  0.316491124506
+----------------Clustering Statistics end -------------------
+--------------- Centrality Statistics----------------
+Average Degree Cenetrality:  0.0073993993994
+Average Closeness Centrality:  0.502105051873
+Average Betweenness Centrality:  0.000994589780161
+----------------Centrality Statistics end -------------------

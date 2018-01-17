@@ -72,11 +72,14 @@ def calculateScaleFreeness(graphInput):
 	degrees = []
 	for x in graphDegrees:
 		degrees.append(x[1])
+	#print (degrees)
+	degrees = np.sort(degrees)
+	#print (degrees)
 	adjacencyMat = nx.adjacency_matrix(graphInput)
 	scaleResult = 0
 	for i in range(1,len(graphDegrees)):
 		for j in range(i+1,len(graphDegrees)):
-			print (str(degrees[i])+"  "+str(degrees[j])+" "+str(adjacencyMat[i,j]))
+			#print (str(degrees[i])+"  "+str(degrees[j])+" "+str(adjacencyMat[i,j]))
 			scaleResult += (degrees[i]*degrees[j]*adjacencyMat[i,j])
 	return scaleResult
 		

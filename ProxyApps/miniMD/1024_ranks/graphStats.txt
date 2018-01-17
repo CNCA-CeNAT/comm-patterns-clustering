@@ -3072,3 +3072,26 @@
 635 , 636 = 85671672.0
 559 , 687 = 20755272.0
 ----------------Graph info end -------------------
+--------------- Connectivity Statistics----------------
+Average Degree:  6.0
+Standard Deviation:  0.0
+Degree Correlation:  nan
+Scale Freeness:  110376
+----------------Connectivity Statistics end -------------------
+--------------- Distance Statistics----------------
+Average Path Length:  8.00782013685
+Characteristic Path Length:  8.0
+Graph Diameter:  16
+Average Eccentricity:  16.0
+----------------Distance Statistics end -------------------
+--------------- Clustering Statistics----------------
+Average triangles:  0.0
+Standard Deviation triangles:  0.0
+Graph Transitivity:  0
+Average Clustering Coefficient:  0.0
+----------------Clustering Statistics end -------------------
+--------------- Centrality Statistics----------------
+Average Degree Cenetrality:  0.0058651026393
+Average Closeness Centrality:  0.124877929688
+Average Betweenness Centrality:  0.0068569668658
+----------------Centrality Statistics end -------------------
