@@ -6,6 +6,8 @@ from igraph import plot
 from igraph import layout
 import igraph as igraph 
 import sys
+import shutil
+import os
 import math
 import matplotlib.pyplot as plt
 import numpy as np
@@ -49,46 +51,42 @@ def showGraphInfo(graphInput,fileName):
     """ Show information on a given Graph """
     fileName.write("--------------- Graph Information----------------\n")   
     for e in graphInput.es:
-		fileName.write(str(e.source)+" , "+str(e.target)+" = "+str(e['weight'])+"\n")     
+        fileName.write(str(e.source)+" , "+str(e.target)+" = "+str(e['weight'])+"\n")     
     fileName.write("----------------Graph info end -------------------\n")
 
 
 def getHist(graphInput, outputDir):
-	""" Creates a png visualization of the vertex degree distribution """
-	hist = graphInput.degree()
-
-	print ("-------------Original count------------------")
-	size = len(hist)
-	print (hist)
-	print (len(hist))
-	print ("-------------Outliers count------------------")
-	hist = list(removeOutliers(hist))
-	print (hist)
-	print (len(hist))
-
-	print ("-------------Histogram count------------------")
-	bins = np.arange(1, np.max(hist)+2)	
-	weightsNumpy = np.ones_like((hist))/float(len(hist))	
-	histogram, bin_edges = np.histogram(hist, bins=bins)
-	pdf = histogram/size
-	print(pdf)
+        """ Creates a png visualization of the vertex degree distribution """
+        hist = graphInput.degree()
+        print ("-------------Original count------------------")
+        
+        size = len(hist)
+        print (hist)
+        print (len(hist))
+        print ("-------------Outliers count------------------")
+        hist = list(removeOutliers(hist))
+        print (hist)
+        print (len(hist))
+        print ("-------------Histogram count------------------")
+        bins = np.arange(1, np.max(hist)+2)	
+        weightsNumpy = np.ones_like((hist))/float(len(hist))
+        histogram, bin_edges = np.histogram(hist, bins=bins)
+        pdf = histogram/size
+        print(pdf)
 	#print (bin_edges)
 	#print (len(pdf))
 	#print (len(bins))
-
-	print ("-------------Saving PDF------------------")
-	xaxis = range(1,len(pdf)+1)
-	plt.bar(xaxis, pdf)	
-	output_file = outputDir + "/PDF.png"
-	plt.savefig(output_file, bbox_inches='tight')
-
-
-	print ("-------------Preparing CDF------------------")
-    	cdf = np.cumsum(pdf)
-    	print (cdf)
-    	plt.bar(xaxis, cdf)
-    	output_file = outputDir + "/CDF.png"
-    	plt.savefig(output_file, bbox_inches='tight')
+        print ("-------------Saving PDF------------------")
+        xaxis = range(1,len(pdf)+1)
+        plt.bar(xaxis, pdf)	
+        output_file = outputDir + "/PDF.png"
+        plt.savefig(output_file, bbox_inches='tight')
+        print ("-------------Preparing CDF------------------")
+        cdf = np.cumsum(pdf)
+        print (cdf)
+        plt.bar(xaxis, cdf)
+        output_file = outputDir + "/CDF.png"
+        plt.savefig(output_file, bbox_inches='tight')
 
 
 	
@@ -213,7 +211,7 @@ def createHeatMapFromGraphCommunities(title, matrix):
 	
 	plotly_fig['layout']['yaxis'].update({'autorange':True})
 
-	plot(plotly_fig, filename=title)
+	plot(plotly_fig, filename=title + ".html")
 	
 def createHeatMapFromGraph(title, matrix):
 				
@@ -233,7 +231,7 @@ def createHeatMapFromGraph(title, matrix):
 	
 	plotly_fig['layout']['yaxis'].update({'autorange':True})
 
-	plot(plotly_fig, filename=title)
+	plot(plotly_fig, filename=title + ".html")
 	
 def defaultFunction(line):
 	return line
@@ -288,7 +286,7 @@ def createGraphCommunitiesSize(communitiesSize, algorithm, app, nodes):
 		)
 	)
 	fig = Figure(data=data, layout=layout)
-	plot(fig, filename=title)
+	plot(fig, filename=title + ".html")
 
 def parseFileAndLoadGraph(input_file):
 	actualFunction = defaultFunction
@@ -299,6 +297,40 @@ def parseFileAndLoadGraph(input_file):
 				actualFunction = options[line]
 				continue
 			actualFunction(line)
+
+def run_algorithm(actualApplication, algorithm, nodes, root_dir):
+	
+	print("Executing algorithm %s\n" % algorithm)
+	clusterU = None
+	if algorithm == 'fast greedy':
+		clusterU = graph.community_fastgreedy(weights='weight').as_clustering()
+	else:
+		if algorithm == 'leading eigen vector':
+			clusterU = graph.community_leading_eigenvector(weights='weight')
+		else:
+			clusterU = graph.community_multilevel(weights='weight')
+
+	print(clusterU.q)
+
+	print("=============== Testing igraph and graph==================")
+	
+	outputDir = os.path.join(root_dir, '%s_graph_stats' % algorithm.replace(" ", "_"))
+	os.mkdir(outputDir)
+	obtainGraphStats(graph, outputDir)
+	plotGraph(graph, outputDir)
+
+	print("=============== Ending test igraph and graph==================")
+	
+	message = 'Communities in application %s using %s algorithm (%s nodes)' % (actualApplication, algorithm, nodes)	
+	createHeatMapFromGraphCommunities(message, createMatrixFromCluster(clusterU))
+	communitiesSize = []
+	
+	for i in range(clusterU.__len__()):
+		#print(clusterU.subgraph(i))	
+		communitiesSize.append(clusterU.subgraph(i).vs.__len__())
+	
+	createGraphCommunitiesSize(communitiesSize, algorithm, actualApplication, nodes)
+	
 
 def run_generation(inputFile, algorithm, nodes, outputDir):
 	
@@ -330,31 +362,12 @@ def run_generation(inputFile, algorithm, nodes, outputDir):
 	#	print(e.source, e.target, '=', e['weight'])
 
 	actualApplication = algorithm
-
+	if os.path.exists(outputDir):
+		shutil.rmtree(outputDir)
+	os.mkdir(outputDir)
 	createHeatMapFromGraph('Communication matrix ' + actualApplication + ' (' + nodes + ' nodes)', matrixToHeatMap.T)
+	run_algorithm(actualApplication, 'multi level', nodes, outputDir)	
+	run_algorithm(actualApplication, 'leading eigen vector', nodes, outputDir)
 	
-	print("First method\n")
-
-	clusterU = graph.community_fastgreedy(weights='weight').as_clustering()
-	
-	print(clusterU.q)
-
-	print("=============== Testing igraph and graph==================")
-
-	obtainGraphStats(graph, outputDir)
-	plotGraph(graph, outputDir)
-
-	print("=============== Ending test igraph and graph==================")
-			
-	createHeatMapFromGraphCommunities('Communities in application ' +
-									  actualApplication + ' using fast greedy algorithm (' + nodes + ' nodes)',
-									  createMatrixFromCluster(clusterU))
-	communitiesSize = []
-	
-	for i in range(clusterU.__len__()):
-		#print(clusterU.subgraph(i))	
-		communitiesSize.append(clusterU.subgraph(i).vs.__len__())
-	
-	createGraphCommunitiesSize(communitiesSize, 'fast greedy', actualApplication, nodes)
 	
 run_generation(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
