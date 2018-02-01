@@ -999,3 +999,26 @@
 0 , 477 = 4.0
 0 , 770 = 4.0
 ----------------Graph info end -------------------
+--------------- Connectivity Statistics----------------
+Average Degree:  1.998
+Standard Deviation:  31.543747336
+Degree Correlation:  -1.0
+Scale Freeness:  0
+----------------Connectivity Statistics end -------------------
+--------------- Distance Statistics----------------
+Average Path Length:  1.998
+Characteristic Path Length:  1.997
+Graph Diameter:  2
+Average Eccentricity:  1.999
+----------------Distance Statistics end -------------------
+--------------- Clustering Statistics----------------
+Average triangles:  0.0
+Standard Deviation triangles:  0.0
+Graph Transitivity:  0
+Average Clustering Coefficient:  0.0
+----------------Clustering Statistics end -------------------
+--------------- Centrality Statistics----------------
+Average Degree Cenetrality:  0.002
+Average Closeness Centrality:  0.500750125188
+Average Betweenness Centrality:  0.001
+----------------Centrality Statistics end -------------------

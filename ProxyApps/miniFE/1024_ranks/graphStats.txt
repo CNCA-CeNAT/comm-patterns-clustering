@@ -11636,3 +11636,26 @@
 635 , 636 = 3240.0
 538 , 541 = 3240.0
 ----------------Graph info end -------------------
+--------------- Connectivity Statistics----------------
+Average Degree:  22.7265625
+Standard Deviation:  31.7528517036
+Degree Correlation:  -0.0486623664755
+Scale Freeness:  5517195
+----------------Connectivity Statistics end -------------------
+--------------- Distance Statistics----------------
+Average Path Length:  1.97778439638
+Characteristic Path Length:  1.98046875
+Graph Diameter:  2
+Average Eccentricity:  1.9990234375
+----------------Distance Statistics end -------------------
+--------------- Clustering Statistics----------------
+Average triangles:  128.8125
+Standard Deviation triangles:  330.299772106
+Graph Transitivity:  0.171519743677
+Average Clustering Coefficient:  0.537269760568
+----------------Clustering Statistics end -------------------
+--------------- Centrality Statistics----------------
+Average Degree Cenetrality:  0.0222156036168
+Average Closeness Centrality:  0.505858810081
+Average Betweenness Centrality:  0.000956736199984
+----------------Centrality Statistics end -------------------

@@ -192,3 +192,26 @@
 21 , 37 = 169643880.0
 5 , 21 = 168612000.0
 ----------------Graph info end -------------------
+--------------- Connectivity Statistics----------------
+Average Degree:  6.0
+Standard Deviation:  0.0
+Degree Correlation:  nan
+Scale Freeness:  6696
+----------------Connectivity Statistics end -------------------
+--------------- Distance Statistics----------------
+Average Path Length:  3.04761904762
+Characteristic Path Length:  3.0
+Graph Diameter:  6
+Average Eccentricity:  6.0
+----------------Distance Statistics end -------------------
+--------------- Clustering Statistics----------------
+Average triangles:  0.0
+Standard Deviation triangles:  0.0
+Graph Transitivity:  0
+Average Clustering Coefficient:  0.0
+----------------Clustering Statistics end -------------------
+--------------- Centrality Statistics----------------
+Average Degree Cenetrality:  0.0952380952381
+Average Closeness Centrality:  0.328125
+Average Betweenness Centrality:  0.0330261136713
+----------------Centrality Statistics end -------------------
