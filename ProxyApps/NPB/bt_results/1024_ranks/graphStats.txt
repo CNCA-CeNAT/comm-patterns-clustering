@@ -4089,3 +4089,26 @@
 894 , 895 = 88341280.0
 635 , 636 = 88502880.0
 ----------------Graph info end -------------------
+--------------- Connectivity Statistics----------------
+Average Degree:  7.986328125
+Standard Deviation:  31.7347682551
+Degree Correlation:  -0.14297879651
+Scale Freeness:  192707
+----------------Connectivity Statistics end -------------------
+--------------- Distance Statistics----------------
+Average Path Length:  1.99219322764
+Characteristic Path Length:  1.9912109375
+Graph Diameter:  2
+Average Eccentricity:  1.9990234375
+----------------Distance Statistics end -------------------
+--------------- Clustering Statistics----------------
+Average triangles:  14.96484375
+Standard Deviation triangles:  95.3917126493
+Graph Transitivity:  0.0281587651599
+Average Clustering Coefficient:  0.571043674068
+----------------Clustering Statistics end -------------------
+--------------- Centrality Statistics----------------
+Average Degree Cenetrality:  0.0078067723607
+Average Closeness Centrality:  0.502201691611
+Average Betweenness Centrality:  0.000970834860704
+----------------Centrality Statistics end -------------------

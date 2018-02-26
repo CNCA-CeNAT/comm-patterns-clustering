@@ -249,3 +249,26 @@
 24 , 32 = 266882600.0
 2 , 58 = 266171560.0
 ----------------Graph info end -------------------
+--------------- Connectivity Statistics----------------
+Average Degree:  7.78125
+Standard Deviation:  6.96300211385
+Degree Correlation:  -0.145254004722
+Scale Freeness:  11267
+----------------Connectivity Statistics end -------------------
+--------------- Distance Statistics----------------
+Average Path Length:  1.87648809524
+Characteristic Path Length:  1.859375
+Graph Diameter:  2
+Average Eccentricity:  1.984375
+----------------Distance Statistics end -------------------
+--------------- Clustering Statistics----------------
+Average triangles:  14.4375
+Standard Deviation triangles:  21.6324950884
+Graph Transitivity:  0.285185185185
+Average Clustering Coefficient:  0.566666666667
+----------------Clustering Statistics end -------------------
+--------------- Centrality Statistics----------------
+Average Degree Cenetrality:  0.123511904762
+Average Closeness Centrality:  0.536351102941
+Average Betweenness Centrality:  0.0141369047619
+----------------Centrality Statistics end -------------------

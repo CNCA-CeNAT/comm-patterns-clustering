@@ -184,3 +184,26 @@
 43 , 47 = 592865664.0
 0 , 35 = 12.0
 ----------------Graph info end -------------------
+--------------- Connectivity Statistics----------------
+Average Degree:  5.75
+Standard Deviation:  7.22192841283
+Degree Correlation:  -0.207682474474
+Scale Freeness:  3746
+----------------Connectivity Statistics end -------------------
+--------------- Distance Statistics----------------
+Average Path Length:  1.90873015873
+Characteristic Path Length:  1.890625
+Graph Diameter:  2
+Average Eccentricity:  1.984375
+----------------Distance Statistics end -------------------
+--------------- Clustering Statistics----------------
+Average triangles:  5.671875
+Standard Deviation triangles:  14.5345006445
+Graph Transitivity:  0.142744789619
+Average Clustering Coefficient:  0.410343061956
+----------------Clustering Statistics end -------------------
+--------------- Centrality Statistics----------------
+Average Degree Cenetrality:  0.0912698412698
+Average Closeness Centrality:  0.527483996071
+Average Betweenness Centrality:  0.014656938044
+----------------Centrality Statistics end -------------------

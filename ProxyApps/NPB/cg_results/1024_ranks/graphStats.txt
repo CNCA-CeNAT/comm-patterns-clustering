@@ -4074,3 +4074,26 @@
 848 , 852 = 148249856.0
 374 , 382 = 148281472.0
 ----------------Graph info end -------------------
+--------------- Connectivity Statistics----------------
+Average Degree:  7.95703125
+Standard Deviation:  31.73612685
+Degree Correlation:  -0.143589894134
+Scale Freeness:  183711
+----------------Connectivity Statistics end -------------------
+--------------- Distance Statistics----------------
+Average Path Length:  1.99222186584
+Characteristic Path Length:  1.9912109375
+Graph Diameter:  2
+Average Eccentricity:  1.9990234375
+----------------Distance Statistics end -------------------
+--------------- Clustering Statistics----------------
+Average triangles:  8.9384765625
+Standard Deviation triangles:  95.1110531211
+Graph Transitivity:  0.0168247490901
+Average Clustering Coefficient:  0.287115074618
+----------------Clustering Statistics end -------------------
+--------------- Centrality Statistics----------------
+Average Degree Cenetrality:  0.00777813416422
+Average Closeness Centrality:  0.502194486353
+Average Betweenness Centrality:  0.000970862882422
+----------------Centrality Statistics end -------------------

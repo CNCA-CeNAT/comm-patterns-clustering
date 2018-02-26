@@ -5893,3 +5893,26 @@
 280 , 288 = 3016032.0
 635 , 636 = 2886944.0
 ----------------Graph info end -------------------
+--------------- Connectivity Statistics----------------
+Average Degree:  11.509765625
+Standard Deviation:  31.7040745352
+Degree Correlation:  -0.0960497978156
+Scale Freeness:  813399
+----------------Connectivity Statistics end -------------------
+--------------- Distance Statistics----------------
+Average Path Length:  1.98874900721
+Characteristic Path Length:  1.9873046875
+Graph Diameter:  2
+Average Eccentricity:  1.9990234375
+----------------Distance Statistics end -------------------
+--------------- Clustering Statistics----------------
+Average triangles:  19.5791015625
+Standard Deviation triangles:  151.699929937
+Graph Transitivity:  0.0347728810032
+Average Clustering Coefficient:  0.306782426768
+----------------Clustering Statistics end -------------------
+--------------- Centrality Statistics----------------
+Average Degree Cenetrality:  0.0112509927908
+Average Closeness Centrality:  0.503070776929
+Average Betweenness Centrality:  0.000967464782005
+----------------Centrality Statistics end -------------------
