@@ -45,12 +45,9 @@ def orderTuple(a,b):
 
 def removeOutliers(distribution):
 	index = []
-	thresholdMin = np.percentile(distribution, 5)
 	thresholdMax = np.percentile(distribution, 95)
 	for i in range(len(distribution)):
-		if distribution[i] < thresholdMin:
-			index.append(i)
-		elif distribution[i] > thresholdMax:
+		if distribution[i] > thresholdMax:
 			index.append(i)
 		else:
 			continue
@@ -89,13 +86,15 @@ def calculateScaleFreeness(graphInput):
 def getConnStats(graphInput, fileName):
 	""" Function to extract different connectivity stats using networkX algorithms """
 	graphNodes = list(graphInput.nodes)
-	graphDegrees = list(graphInput.degree(graphNodes))
+	graphDegrees = list(graphInput.degree(graphNodes))	
 	degrees = []
 	for x in graphDegrees:
-		degrees.append(x[1])
-	averageDegree = np.mean(degrees)
-	stdDeviation = np.std(degrees)
-	degreeCorrelation = nx.degree_assortativity_coefficient(graphInput)
+		degrees.append(x[1])	
+	newDegrees = removeOutliers(degrees)		
+	averageDegree = np.mean(newDegrees)
+	stdDeviation = np.std(newDegrees)
+	#degreeCorrelation = nx.degree_assortativity_coefficient(graphInput)
+	degreeCorrelation = nx.degree_pearson_correlation_coefficient(graphInput)
 	scaleFreeness = calculateScaleFreeness(graphInput)
 	fileName.write("--------------- Connectivity Statistics----------------\n")   
 	fileName.write("Average Degree:  " + str(averageDegree) + "\n") 
@@ -325,13 +324,15 @@ def createHeatMapFromGraph(title, matrix):
 
 	plotly_fig = tls.mpl_to_plotly( fig )
 
-	trace = dict(z=matrix, type="heatmap", zmin=matrix.min(), zmax=matrix.max(),colorscale='Greys')
-
+	trace = dict(z=matrix, type="heatmap", zmin=matrix.min(), zmax=matrix.max(),colorscale='Greys', 
+		colorbar=dict(title='Communication Volume [MB]', titleside='right', tickmode='array', tickvals=[0,matrix.max()], ticktext=['Low','High'],ticks='outside'))
+		
 	plotly_fig['data'] = [trace]
 
 	plotly_fig['layout']['xaxis'].update({'autorange':True})
-	
+	plotly_fig['layout']['xaxis'].update({'title':'Sender Rank'})
 	plotly_fig['layout']['yaxis'].update({'autorange':True})
+	plotly_fig['layout']['yaxis'].update({'title':'Receiver Rank'})
 
 	plot(plotly_fig, filename=title + ".html")
 	

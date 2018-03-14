@@ -5894,8 +5894,8 @@
 635 , 636 = 2886944.0
 ----------------Graph info end -------------------
 --------------- Connectivity Statistics----------------
-Average Degree:  11.509765625
-Standard Deviation:  31.7040745352
+Average Degree:  10.4620689655
+Standard Deviation:  2.15376624077
 Degree Correlation:  -0.0960497978156
 Scale Freeness:  813399
 ----------------Connectivity Statistics end -------------------
